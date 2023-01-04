@@ -1,0 +1,46 @@
+.myRegister {
+  position: relative;
+  width: 30%;
+  border-radius: 5px;
+  background-color: rgb(168, 202, 202);
+  padding: 40px 30px;
+  margin: 200px auto;
+  /* transition: 0.3s; */
+  box-shadow: 8px 8px 20px rgb(214, 211, 211);
+  /* display: flex; */
+  float: center;
+  align-items: center;
+}
+.myRegister:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.mybutton {
+  background-color: rgba(17, 158, 123, 0.685);
+  color: aliceblue;
+  cursor: pointer;
+  /* align-items: center; */
+  margin-top: 2%;
+  /* display: flexbox;
+  float: left;*/
+  width: 40%;
+  padding: 10px;
+  margin-left: 10px;
+  /* margin-right: 3px; */
+}
+.mybutton:hover {
+  background-color: rgba(6, 80, 61, 0.425);
+}
+.row {
+  margin-top: 0.5rem;
+}
+/* input[type="text" i] {
+  border-radius: 10px;
+} */
+input {
+  border-radius: 5px;
+  padding: 10px;
+  width: 90%;
+}
+label {
+  margin-bottom: 10px;
+}

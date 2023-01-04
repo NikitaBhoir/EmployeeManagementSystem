@@ -1,0 +1,62 @@
+<table border="2">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Department Name</th>
+      <th>Budget</th>
+      <th>EstYear</th>
+      <th>-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let deptItem of deptArray">
+      <td>
+        {{ deptItem.deptId }}
+      </td>
+      <td>{{ deptItem.deptName }}</td>
+      <td>{{ deptItem.deptBudget }}</td>
+      <td>{{ deptItem.deptEstYear }}</td>
+      <!-- <td><img src="{{deptItem.imageUrl}}"/></td> property binding -->
+      <!-- attribute binding -->
+      <td><img [src]="deptItem.imageUrl" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+<br /><br />
+<!-- <section class="myDepartment">
+    <figure>
+        <h2>Id: {{deptArray.deptId}}</h2>
+        <img [src]="deptArray.imageUrl">
+        <figcaption><h3>{{deptArray.deptName}}</h3></figcaption>
+    </figure>
+    <div>
+        <p>This is depatment is established in year <b>{{deptArray.deptEstYear}}</b></p>
+        <p>Year budget of depatment is <b>{{deptArray.deptBudget}}</b></p>
+    </div>
+</section> -->
+<article class="flexContainer">
+  <section class="myDepartment" *ngFor="let depart of deptArray">
+    <figure>
+      <h2>Id: {{ depart.deptId }}</h2>
+      <img [src]="depart.imageUrl" />
+      <figcaption>{{ depart.deptName }}</figcaption>
+    </figure>
+    <div>
+      <p>
+        This is depatment is established in year <b>{{ depart.deptEstYear }}</b>
+      </p>
+      <p>
+        Year budget of depatment is <b>{{ depart.deptBudget }}</b>
+      </p>
+    </div>
+  </section>
+</article>
+<hr />
+<br /><br />
+
+<section>
+  <label>Enter Department name : </label>
+  <input type="text" [(ngModel)]="department.deptName" (keyup)="Display()" />
+</section>

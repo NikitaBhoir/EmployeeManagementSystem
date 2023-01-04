@@ -1,0 +1,12 @@
+.myDepartment {
+  background-color: cadetblue;
+  border: 3px solid rgb(148, 148, 147);
+}
+.myDepartment figure {
+  background-color: rgb(67, 3, 110);
+  color: rgb(252, 250, 250);
+  padding-left: 3px;
+}
+.flexContainer {
+  display: flex;
+}
