@@ -1,0 +1,36 @@
+<!-- Assignment-4 -->
+
+<table border="2" [ngStyle]="myStyle1">
+  <tbody>
+    <tr *ngFor="let empItem of employees">
+      <span *ngIf="empItem.empSalary > 300000">
+        <td>{{ empItem.empId }}</td>
+        <td>{{ empItem.empName }}</td>
+        <td>{{ empItem.empSalary }}</td>
+        <td>{{ empItem.empDepartment }}</td></span
+      >
+    </tr>
+  </tbody>
+</table>
+<hr />
+<br /><br />
+<table border="2">
+  <tbody>
+    <tr *ngFor="let empItem of employees">
+      <span *ngIf="empItem.empSalary < 300000; then empNode"></span>
+      <ng-template #empNode>
+        <td>{{ empItem.empId }}</td>
+        <td>{{ empItem.empName }}</td>
+        <td>{{ empItem.empSalary }}</td>
+        <td>{{ empItem.empDepartment }}</td>
+        <td>
+          <span [ngSwitch]="true">
+            <div *ngSwitchCase="empItem.empExperience > 3">Increment</div>
+            <div *ngSwitchCase="empItem.empExperience < 2">N-A</div>
+            <div *ngSwitchDefault>NA</div>
+          </span>
+        </td></ng-template
+      >
+    </tr>
+  </tbody>
+</table>

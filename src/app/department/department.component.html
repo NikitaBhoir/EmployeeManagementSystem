@@ -22,7 +22,6 @@
     </tr>
   </tbody>
 </table>
-
 <hr />
 <br /><br />
 <!-- <section class="myDepartment">
@@ -36,6 +35,7 @@
         <p>Year budget of depatment is <b>{{deptArray.deptBudget}}</b></p>
     </div>
 </section> -->
+
 <article class="flexContainer">
   <section class="myDepartment" *ngFor="let depart of deptArray">
     <figure>
@@ -58,5 +58,187 @@
 
 <section>
   <label>Enter Department name : </label>
-  <input type="text" [(ngModel)]="department.deptName" (keyup)="Display()" />
+  <input
+    type="text"
+    [(ngModel)]="department.deptName"
+    (keyup)="Display()"
+    #nameNode
+  />
+  <!-- <button (click)="passVal(nameNode)" #btnNode>Save</button> pass node id -->
+  <button (click)="passVal(nameNode)">Save</button>
 </section>
+
+<hr />
+<br /><br />
+
+<section>
+  <label>Department Id : </label>
+  <input
+    type="text"
+    [(ngModel)]="department.deptId"
+    (focus)="Display()"
+    #deptIdNode
+  />
+  <label>Department Name : </label>
+  <input type="text" [(ngModel)]="department.deptName" #deptNameNode />
+  <label>Department yearly Budget : </label>
+  <input type="text" [(ngModel)]="department.deptBudget" #budgetNode />
+  <label>Department Established Year : </label>
+  <input type="text" [(ngModel)]="department.deptEstYear" #EstYearNode />
+  <label>Department Image : </label>
+  <input type="text" [(ngModel)]="department.imageUrl" #imgNode />
+  <button
+    (click)="
+      addDeparment(
+        deptIdNode.value,
+        deptNameNode.value,
+        budgetNode.value,
+        EstYearNode.value,
+        imgNode.value
+      )
+    "
+  >
+    ADD DEPARMENT
+  </button>
+
+  <br />
+  <label>Test Fields</label>
+  <input type="checkbox" (change)="test()" />
+  <hr />
+  <br />
+  <table border="3">
+    <tr>
+      <td *ngFor="let st of stationArray">{{ st }}</td>
+    </tr>
+  </table>
+  <select [(ngModel)]="station" (change)="addStation()">
+    <option value="Thane">THANE</option>
+    <option value="Pune">PUNE</option>
+    <option value="Bhiwandi">BHIWANDI</option>
+  </select>
+</section>
+
+<section>
+  <select [(ngModel)]="station" (change)="addStation()">
+    <option value="Rabale">RABALE</option>
+    <option value="Ghansoli">GHANSOLI</option>
+    <option value="Kopar">KOPAR</option>
+    <option value="Turbhe">TURBHE</option>
+  </select>
+</section>
+
+<section>
+  <table border="3">
+    <tr>
+      <td *ngFor="let st of stationArray">{{ st }}</td>
+    </tr>
+  </table>
+  <select [(ngModel)]="station" (change)="addStation()">
+    <option value="Rabale">RABALE</option>
+    <option value="Ghansoli">GHANSOLI</option>
+    <option value="Kopar">KOPAR</option>
+    <option value="Turbhe">TURBHE</option>
+  </select>
+</section>
+<section>
+  <input type="number" [(ngModel)]="age" />
+  <span *ngIf="age >= 18; then thenfield; else elsefield">OK</span>
+  <ng-template #thenfield>
+    <p>You are allowed for voting</p>
+  </ng-template>
+  <ng-template #elsefield>
+    <p>You are NOT allowed for voting</p>
+  </ng-template>
+</section>
+
+<!-- if else structural directive -->
+<section>
+  <input type="number" [(ngModel)]="age" />
+  <span *ngIf="age >= 18; then thenfield; else elsefield">OK</span>
+  <ng-template #thenfield>
+    <p
+      [ngStyle]="{
+        borderColor: bColor,
+        borderWidth: '3px',
+        borderStyle: 'double'
+      }"
+    >
+      You are allowed for voting
+    </p>
+  </ng-template>
+  <ng-template #elsefield>
+    <p>You are NOT allowed for voting</p>
+  </ng-template>
+</section>
+
+<!--  50000 100000 : LB
+      100001 500000 : MB
+    500001    10000000 : HB   by using ng-switch structural directive-->
+
+<table border="3" [ngStyle]="myStyle">
+  <tbody>
+    <tr *ngFor="let depart of deptArray">
+      <td>{{ depart.deptId }}</td>
+      <td>{{ depart.deptName }}</td>
+      <td>{{ depart.deptBudget }}</td>
+      <td>{{ depart.deptEstYear }}</td>
+      <td>
+        <span [ngSwitch]="true">
+          <b
+            *ngSwitchCase="
+              depart.deptBudget >= 50000 && depart.deptBudget <= 100000
+            "
+            >LB</b
+          >
+          <b
+            *ngSwitchCase="
+              depart.deptBudget >= 100001 && depart.deptBudget <= 5000000
+            "
+            >MB</b
+          >
+          <b
+            *ngSwitchCase="
+              depart.deptBudget >= 5000001 && depart.deptBudget <= 10000000
+            "
+            >HB</b
+          >
+          <b *ngSwitchDefault>NA</b>
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- if -->
+<table border="3">
+  <tbody>
+    <tr *ngFor="let depart of deptArray">
+      <span *ngIf="depart.deptEstYear == 2000">
+        <td>{{ depart.deptId }}</td>
+        <td>{{ depart.deptName }}</td>
+        <td>{{ depart.deptBudget }}</td>
+        <td>{{ depart.deptEstYear }}</td>
+      </span>
+    </tr>
+  </tbody>
+</table>
+
+<!-- if -then -->
+<table
+  border="3"
+  [ngStyle]="obj"
+  (mouseover)="applyStyle()"
+  (mouseleave)="clearStyle()"
+>
+  <tbody>
+    <tr *ngFor="let depart of deptArray">
+      <span *ngIf="depart.deptEstYear == 2000; then thenpart"></span>
+      <ng-template #thenpart>
+        <td>{{ depart.deptId }}</td>
+        <td>{{ depart.deptName }}</td>
+        <td>{{ depart.deptBudget }}</td>
+        <td>{{ depart.deptEstYear }}</td>
+      </ng-template>
+    </tr>
+  </tbody>
+</table>

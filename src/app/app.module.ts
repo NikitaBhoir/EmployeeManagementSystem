@@ -10,6 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DepartmentComponent } from './department/department.component';
 import { FormsModule } from '@angular/forms';
+import { EmployeeComponent } from './employee/employee.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
-    DepartmentComponent, // this dependancy added automatically when new component is created ,if not then dd manually
+    DepartmentComponent,
+    EmployeeComponent, // this dependancy added automatically when new component is created ,if not then dd manually
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
