@@ -10,15 +10,3 @@
 .flexContainer {
   display: flex;
 }
-
-.fontStyle {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: large;
-  font-weight: bold;
-  font-style: italic;
-}
-.colorStyle {
-  color: aqua;
-  background-color: blue;
-  border: 2px solid red;
-}

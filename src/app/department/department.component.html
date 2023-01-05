@@ -140,8 +140,10 @@
     <option value="Turbhe">TURBHE</option>
   </select>
 </section>
+<hr />
+<br /><br />
 <section>
-  <input type="number" [(ngModel)]="age" />
+  <input type="number" [(ngModel)]="age" [ngClass]="styleArray" />
   <span *ngIf="age >= 18; then thenfield; else elsefield">OK</span>
   <ng-template #thenfield>
     <p>You are allowed for voting</p>
@@ -149,8 +151,11 @@
   <ng-template #elsefield>
     <p>You are NOT allowed for voting</p>
   </ng-template>
+  <button type="submit" (click)="AddStyle()">add</button>
+  <button type="submit" (click)="RemoveStyle()">remove</button>
 </section>
-
+<hr />
+<br /><br />
 <!-- if else structural directive -->
 <section>
   <input type="number" [(ngModel)]="age" />
@@ -239,6 +244,198 @@
         <td>{{ depart.deptBudget }}</td>
         <td>{{ depart.deptEstYear }}</td>
       </ng-template>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ngrx store -->
+<hr />
+<br /><br />
+<strong> Passing Data from Parent to Child</strong><br />
+<strong
+  >{{ childData | prefix }}
+  <p>{{ childData1 }}</p></strong
+>
+<!-- for passing event from parent to child and get data from child use () to pass event and event emmiter to pass data -->
+<article class="flexContainer">
+  <div *ngFor="let item of deptArray">
+    <app-dept-container
+      [department]="item"
+      (emitter)="acceptData($event)"
+      (emitter1)="acceptData1($event)"
+    ></app-dept-container>
+  </div>
+</article>
+<hr />
+<br /><br />
+
+<h3>Working with files</h3>
+
+<table border="3">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Name lowercase</th>
+      <th>Name uppercase</th>
+      <th>Name titlecase</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let depart of deptArray">
+      <td>{{ depart.deptName }}</td>
+      <td>{{ depart.deptName | lowercase }}</td>
+      <td>{{ depart.deptName | uppercase }}</td>
+      <td>{{ depart.deptName | titlecase }}</td>
+      <td>{{ depart.deptBudget }}</td>
+      <td>{{ depart.deptEstYear }}</td>
+      <td>{{ depart.deptEstDate }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+<hr />
+<table border="3">
+  <thead>
+    <tr>
+      <th>Budget</th>
+      <th>Budget normal</th>
+      <th>Budget between 2-3 decimal</th>
+      <th>Budget 2 decimal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let depart of deptArray">
+      <td>{{ depart.deptBudget }}</td>
+      <td>{{ depart.deptBudget | number }}</td>
+      <!-- round to 3 digit by default -->
+      <td>{{ depart.deptBudget | number : "10.1-3" }}</td>
+      <td>{{ depart.deptBudget | number : "12.2-2" }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+<hr />
+<table border="3">
+  <thead>
+    <tr>
+      <th>Budget</th>
+      <th>Budget currency</th>
+      <th>Budget indian Currency</th>
+      <th>Budget US currency</th>
+      <th>Budget US currency</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let depart of deptArray">
+      <td>{{ depart.deptBudget | currency }}</td>
+      <!-- round to 2 digit by default and add $ sign -->
+      <td>{{ depart.deptBudget | currency : "INR" }}</td>
+      <td>{{ depart.deptBudget | currency : "INR" : "code" }}</td>
+      <td>{{ depart.deptBudget | currency : "USD" }}</td>
+      <td>{{ depart.deptBudget | currency : "USD" : "code" : "8.2-2" }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>{{ 1000.23 | number : "3.2-2" }}</p>
+<p>{{ 10000.356 | number : "3.2-2" }}</p>
+<table border="3">
+  <thead>
+    <th>EST DATE</th>
+    <th>ESTDATE date</th>
+    <th>EST DATE shortDate</th>
+    <th>EST DATE longDate</th>
+    <th>EST DATE fullDate</th>
+    <th>EST DATE dd/MMMM/yyyy</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let depart of deptArray">
+      <td>{{ depart.deptEstDate }}</td>
+      <td>{{ depart.deptEstDate | date }}</td>
+      <!-- medium date-->
+      <td>{{ depart.deptEstDate | date : "shortDate" }}</td>
+      <td>{{ depart.deptEstDate | date : "longDate" }}</td>
+      <td>{{ depart.deptEstDate | date : "fullDate" }}</td>
+      <td>{{ depart.deptEstDate | date : "dd/MMMM/yyyy" }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+<hr />
+<!-- order by pipe -->
+
+<ol>
+  <li *ngFor="let color of colorArray | orderBy">{{ color }}</li>
+</ol>
+<table border="3">
+  <thead>
+    <th (click)="sortBy('empId')">ID</th>
+    <th (click)="sortBy('deptName')">NAME</th>
+    <th (click)="sortBy('deptBudget')">BUDGET</th>
+    <th (click)="sortBy('deptEstYear')">ES YEAR</th>
+    <th (click)="sortBy('deptEstDate')">ES DATE</th>
+  </thead>
+  <!-- <thead>
+    <th (click)="sortBy('deptId')">ID</th>
+    <th (click)="sortBy('deptName')">NAME</th>
+    <th (click)="sortBy('deptBudget')">BUDGET</th>
+    <th (click)="sortBy('deptEstYear')">ES YEAR</th>
+    <th (click)="sortBy('deptEstDate')">ES DATE</th>
+  </thead> -->
+  <tbody>
+    <tr
+      *ngFor="
+        let depart of deptArray
+          | orderBy
+            : orderObject.sortProperty
+            : orderObject.sortOrder
+            : orderObject.sortCase
+      "
+    >
+      <td>{{ depart.deptId | prefix : "Neo" | suffix : "Mik" }}</td>
+      <td>{{ depart.deptName }}</td>
+      <td>{{ depart.deptBudget }}</td>
+      <td>{{ depart.deptEstYear }}</td>
+      <td>{{ depart.deptEstDate }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+<br /><br />
+<table border="3" class="table table-hover">
+  <thead>
+    <th (click)="sortBy('empId')">ID</th>
+    <th (click)="sortBy('deptName')">NAME</th>
+    <th (click)="sortBy('deptBudget')">BUDGET</th>
+    <th (click)="sortBy('deptEstYear')">ES YEAR</th>
+    <th (click)="sortBy('deptEstDate')">ES DATE</th>
+  </thead>
+  <!-- <thead>
+    <th (click)="sortBy('deptId')">ID</th>
+    <th (click)="sortBy('deptName')">NAME</th>
+    <th (click)="sortBy('deptBudget')">BUDGET</th>
+    <th (click)="sortBy('deptEstYear')">ES YEAR</th>
+    <th (click)="sortBy('deptEstDate')">ES DATE</th>
+  </thead> -->
+  <tbody>
+    <tr
+      *ngFor="
+        let depart of deptArray
+          | orderBy
+            : orderObject.sortProperty
+            : orderObject.sortOrder
+            : orderObject.sortCase
+      "
+    >
+      <td>{{ depart.deptId | prefix : "Neo" | suffix : "Mik" }}</td>
+      <td>{{ depart.deptName }}</td>
+      <td>{{ depart.deptBudget }}</td>
+      <td>{{ depart.deptEstYear }}</td>
+      <td>{{ depart.deptEstDate }}</td>
     </tr>
   </tbody>
 </table>

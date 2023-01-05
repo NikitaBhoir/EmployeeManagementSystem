@@ -11,6 +11,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { DepartmentComponent } from './department/department.component';
 import { FormsModule } from '@angular/forms';
 import { EmployeeComponent } from './employee/employee.component';
+import { DeptContainerComponent } from './dept-container/dept-container.component';
+import { OrderModule } from 'ngx-order-pipe';
+import { PrefixPipe } from './custompipes/prefix.pipe';
+import { SuffixPipe } from './custompipes/suffix.pipe';
 
 @NgModule({
   declarations: [
@@ -21,9 +25,12 @@ import { EmployeeComponent } from './employee/employee.component';
     RegisterComponent,
     NavbarComponent,
     DepartmentComponent,
-    EmployeeComponent, // this dependancy added automatically when new component is created ,if not then dd manually
+    EmployeeComponent,
+    DeptContainerComponent,
+    PrefixPipe,
+    SuffixPipe, // this dependancy added automatically when new component is created ,if not then dd manually
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, OrderModule],
   providers: [],
   bootstrap: [AppComponent],
 })
