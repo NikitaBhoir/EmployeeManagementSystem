@@ -406,6 +406,7 @@
 
 <hr />
 <br /><br />
+<h3>sorting using order pipe</h3>
 <table border="3" class="table table-hover">
   <thead>
     <th (click)="sortBy('empId')">ID</th>
@@ -436,6 +437,37 @@
       <td>{{ depart.deptBudget }}</td>
       <td>{{ depart.deptEstYear }}</td>
       <td>{{ depart.deptEstDate }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+<br /><br />
+<h3>Slice Pipe</h3>
+<table border="3" class="table table-hover">
+  <thead>
+    <th>NAME</th>
+    <th>NAME</th>
+    <th>NAME</th>
+    <th>NAME</th>
+    <th>NAME</th>
+    <th>NAME</th>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="
+        let depart of deptArray
+          | orderBy
+            : orderObject.sortProperty
+            : orderObject.sortOrder
+            : orderObject.sortCase
+      "
+    >
+      <td>{{ depart.deptName | slice : 0 }}</td>
+      <td>{{ depart.deptName | slice : 0 : 6 }}</td>
+      <td>{{ depart.deptName | slice : -6 : -1 }}</td>
+      <td>{{ depart.deptName | slice : -6 }}</td>
+      <td>{{ depart.deptName | slice : 3 }}</td>
     </tr>
   </tbody>
 </table>

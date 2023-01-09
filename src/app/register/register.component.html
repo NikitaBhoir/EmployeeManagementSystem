@@ -1,32 +1,181 @@
-<div class="myRegister">
-  <form>
-    <div class="row">
-      <label>Employee Name: </label>
-      <input type="text" placeholder="name" />
+<form
+  [formGroup]="registerForm"
+  class="myRegister"
+  (submit)="collectData()"
+  id="form1"
+>
+  <!-- formGroup linked with form-->
+  <h2>Employee Joining Form</h2>
+  <hr />
+  <br />
+  <div class="form-control1">
+    <label> Employee Name </label>
+    <!-- Input Type Text -->
+    <input
+      type="text"
+      formControlName="empName"
+      placeholder="Enter your name"
+    />
+    <div *ngIf="ename?.touched && ename?.invalid" class="text-danger">
+      <!-- Employee name is required -->
+
+      <div *ngIf="ename!.errors!['required']">Employee Name is required</div>
+      <div *ngIf="ename!.errors!['minlength']">Please add min 2 characters</div>
+      <div *ngIf="ename!.errors!['pattern']">Name only contains alphabates</div>
     </div>
-    <div class="input-group row">
-      <label>username</label>
-      <input type="text" placeholder="username" />
+  </div>
+
+  <div class="form-control1">
+    <label> Email </label>
+    <input
+      type="email"
+      id="empEmail"
+      formControlName="empEmail"
+      placeholder="Enter your email"
+    />
+    <div *ngIf="eemail?.touched && eemail?.invalid" class="text-danger">
+      <div *ngIf="eemail!.errors!['required']">email is required</div>
+      <div *ngIf="eemail!.errors!['email']">Please enter valid email id</div>
     </div>
-    <div class="row">
-      <label>Password:</label>
-      <input type="password" placeholder="Password" />
+    <!-- <div *ngIf="myForm.control['empName'].error"></div> -->
+  </div>
+
+  <div class="form-control1">
+    <label> Contact No. </label>
+    <input
+      type="number"
+      formControlName="empContactNo"
+      placeholder="Enter your Contact no."
+    />
+    <div *ngIf="econtact?.touched && econtact?.invalid">
+      <div *ngIf="econtact!.errors!['required']">
+        Contact number is required
+      </div>
     </div>
-    <div class="row">
-      <label>Email: </label>
-      <input type="text" placeholder="Email" />
+  </div>
+  <div class="form-control1">
+    <label> Address </label>
+    <input
+      type="text"
+      formControlName="empAddress"
+      placeholder="Enter your Address"
+    />
+    <div *ngIf="eaddress?.touched && eaddress?.invalid">
+      <div *ngIf="eaddress!.errors!['required']">Address is required</div>
     </div>
-    <div class="row">
-      <label>Contact No: </label>
-      <input type="text" placeholder="Contact No" />
+  </div>
+  <div class="form-control1">
+    <label> Salary </label>
+    <input
+      type="number"
+      formControlName="empSalary"
+      placeholder="Enter your Salary"
+    />
+    <div *ngIf="esalary?.touched && esalary?.invalid">
+      <div *ngIf="esalary!.errors!['required']">Salary is required</div>
+      <div *ngIf="esalary!.errors!['min']">-ve value not allowed</div>
     </div>
-    <div class="row">
-      <label>Department:</label>
-      <input type="text" placeholder="Department" />
+  </div>
+
+  <div class="form-control1">
+    <label> Department </label>
+    <!-- Dropdown options -->
+    <select formControlName="empDepartmentId">
+      <option value="LD">Learning and Developement</option>
+      <option value="JW">Java Web</option>
+      <option value="DN">Dot Net</option>
+      <option value="HR">Human Resource</option>
+    </select>
+    <div *ngIf="deptId?.touched && deptId?.invalid">
+      <div *ngIf="deptId!.errors!['required']">Department is required</div>
     </div>
-    <div>
-      <button type="submit" class="mybutton" value="Register">Register</button
-      ><button type="reset" class="mybutton" value="Reset">Reset</button>
+  </div>
+
+  <div class="form-control1">
+    <label> Gender </label>
+    <!-- Input Type Radio Button -->
+    <label>
+      <input
+        type="radio"
+        formControlName="empGender"
+        value="male"
+        name="empGender"
+      />Male
+    </label>
+    <label>
+      <input
+        type="radio"
+        formControlName="empGender"
+        value="female"
+        name="empGender"
+      />Female
+    </label>
+  </div>
+  <div class="form-control1">
+    <label> Password </label>
+    <input
+      type="password"
+      formControlName="password"
+      placeholder="Enter your password"
+    />
+    <div *ngIf="epass?.touched && epass?.invalid">
+      <div *ngIf="epass!.errors!['required']">Password is required</div>
+      <div *ngIf="epass!.errors!['pattern']">
+        <!-- Please enter valid password it should be a combination of : -->
+        <b>Password should contain atleast one</b>
+        <ol>
+          <li>small letter</li>
+          <li>capital letter</li>
+          <li>digit</li>
+          <li>Special Symbol</li>
+        </ol>
+        <b>Password should be 7 to 15 characters long</b>
+      </div>
     </div>
-  </form>
-</div>
+  </div>
+  <div class="form-control1">
+    <label> Confirm Password </label>
+    <input
+      [type]="nodeType"
+      formControlName="confirmPassword"
+      placeholder="Confirm your Password"
+      [ngStyle]="{
+        border: registerForm.hasError('passMatch') ? 'red 2px solid' : ''
+      }"
+    />
+    <div *ngIf="registerForm?.invalid && econfirmpass?.touched">
+      <div *ngIf="registerForm!.hasError('passMatch')">
+        Confirm password must be same as password
+      </div>
+    </div>
+    <div *ngIf="econfirmpass?.invalid && econfirmpass?.touched">
+      <!-- <div *ngIf="econfirmpass!.errors!['required']">password is required</div> -->
+      <div *ngIf="econfirmpass!.errors!['required']">password is required</div>
+    </div>
+
+    <input type="checkbox" (change)="showP($event)" />:Show Password
+    <!-- <tr *ngIf="econfirmpass?.touched && econfirmpass?.invalid">
+      <td></td>
+      <td *ngIf="econfirmpass!.errors!['required']">Confirm password is required</td>
+  </tr>
+  <tr *ngIf="econfirmpass?.touched && registerForm?.invalid">
+      <td></td>
+      <td *ngIf="registerForm!.errors!['passMatch']">Confirm password must be same as password</td> -->
+  </div>
+  <div>
+    <input
+      type="submit"
+      class="mybutton"
+      value="Register"
+      [disabled]="!registerForm.valid"
+    />
+    <input type="reset" class="mybutton" value="Reset" />
+  </div>
+  <div>
+    <h5>
+      Existing User??<i><a routerLink="/login">Login here</a></i>
+      <!-- add / in link to take base url as default and append registeruser into link .
+      if you doesn't use / then it will append it to existing url  -->
+    </h5>
+  </div>
+</form>

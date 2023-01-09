@@ -155,7 +155,12 @@ export class DepartmentComponent {
     sortOrder: false,
     sortCase: true,
   };
+  // sortBy(property: string) {
+  //   this.orderObject.sortProperty = property;
+  // }
   sortBy(property: string) {
+    if (this.orderObject.sortOrder == false) this.orderObject.sortOrder = true;
+    else this.orderObject.sortOrder = false;
     this.orderObject.sortProperty = property;
   }
 }

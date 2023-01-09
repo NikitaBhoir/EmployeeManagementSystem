@@ -9,12 +9,16 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DepartmentComponent } from './department/department.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployeeComponent } from './employee/employee.component';
 import { DeptContainerComponent } from './dept-container/dept-container.component';
 import { OrderModule } from 'ngx-order-pipe';
 import { PrefixPipe } from './custompipes/prefix.pipe';
 import { SuffixPipe } from './custompipes/suffix.pipe';
+import { HomeComponent } from './home/home.component';
+import { ViewNotFoundComponent } from './view-not-found/view-not-found.component';
+import { CompanyDetailsComponent } from './company-details/company-details.component';
+import { EmpDetailsComponent } from './emp-details/emp-details.component';
 
 @NgModule({
   declarations: [
@@ -28,9 +32,19 @@ import { SuffixPipe } from './custompipes/suffix.pipe';
     EmployeeComponent,
     DeptContainerComponent,
     PrefixPipe,
-    SuffixPipe, // this dependancy added automatically when new component is created ,if not then dd manually
+    SuffixPipe,
+    HomeComponent,
+    ViewNotFoundComponent,
+    CompanyDetailsComponent,
+    EmpDetailsComponent, // this dependancy added automatically when new component is created ,if not then dd manually
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, OrderModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    OrderModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

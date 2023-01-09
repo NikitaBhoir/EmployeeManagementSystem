@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Employee } from '../classes/employee';
+import { Employee1 } from '../classes/employee';
 
 @Component({
   selector: 'app-employee',
@@ -7,7 +7,7 @@ import { Employee } from '../classes/employee';
   styleUrls: ['./employee.component.css'],
 })
 export class EmployeeComponent {
-  employees = new Array<Employee>();
+  employees = new Array<Employee1>();
   myStyle1 = {
     borderColor: 'purple',
     borderWidth: '5px',
@@ -15,9 +15,9 @@ export class EmployeeComponent {
   };
   constructor() {
     this.employees = [
-      new Employee(21, 'Rina', 'SD', 2200000, 13),
-      new Employee(22, 'Anamika', 'L&D', 240000, 1.5),
-      new Employee(23, 'Priya', 'DevOps', 520000, 4),
+      new Employee1(21, 'Rina', 'SD', 2200000, 13),
+      new Employee1(22, 'Anamika', 'L&D', 240000, 1.5),
+      new Employee1(23, 'Priya', 'DevOps', 520000, 4),
     ];
   }
 }

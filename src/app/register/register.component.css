@@ -1,19 +1,40 @@
 .myRegister {
-  position: relative;
-  width: 30%;
-  border-radius: 5px;
-  background-color: rgb(168, 202, 202);
-  padding: 40px 30px;
-  margin: 200px auto;
-  /* transition: 0.3s; */
-  box-shadow: 8px 8px 20px rgb(214, 211, 211);
-  /* display: flex; */
-  float: center;
-  align-items: center;
+  background-color: #f5e6d1;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 30px 20px;
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
 }
 .myRegister:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
+.form-control1 {
+  text-align: left;
+  margin-bottom: 25px;
+}
+.form-control1 input[type="radio"] {
+  display: inline-block;
+  width: auto;
+}
+.form-control1 input[type="checkbox"] {
+  display: inline-block;
+  width: auto;
+}
+.form-control1 label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-control1 input,
+.form-control1 select {
+  border: 1px solid #777;
+  border-radius: 6px;
+  font-family: inherit;
+  padding: 10px;
+  display: block;
+  width: 95%;
+}
+
 .mybutton {
   background-color: rgba(17, 158, 123, 0.685);
   color: aliceblue;
@@ -30,17 +51,27 @@
 .mybutton:hover {
   background-color: rgba(6, 80, 61, 0.425);
 }
-.row {
-  margin-top: 0.5rem;
+
+/* validiation css */
+.ng-valid {
+  border: 2px solid green;
 }
-/* input[type="text" i] {
-  border-radius: 10px;
-} */
-input {
-  border-radius: 5px;
-  padding: 10px;
-  width: 90%;
+.ng-invalid {
+  border: 2px solid red;
 }
-label {
-  margin-bottom: 10px;
+input.ng-untouched {
+  background-color: yellow;
+}
+input.ng-touched {
+  background-color: blueviolet;
+}
+input.ng-pristine {
+  background-color: aqua;
+}
+input.ng-dirty {
+  background-color: burlywood;
+}
+.errMsg {
+  color: red;
+  font-style: italic;
 }
