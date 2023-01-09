@@ -14,6 +14,7 @@ import { Employee } from '../classes/employee';
 })
 export class RegisterComponent {
   registerForm: FormGroup = new FormGroup({});
+  updateForm: FormGroup = new FormGroup({});
   employee = new Employee();
   myBorder = 'green 2px solid';
   passPattern =
@@ -44,6 +45,36 @@ export class RegisterComponent {
       },
       this.passwordMatch
     );
+
+    this.updateForm = new FormGroup({
+      empName: new FormControl(this.myEmp.empName, [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.pattern(this.namePattern),
+      ]),
+      empSalary: new FormControl(this.myEmp.empSalary, [
+        Validators.required,
+        Validators.min(0),
+      ]),
+      empGender: new FormControl(this.myEmp.empGender),
+      empAddress: new FormControl(this.myEmp.empAddress, Validators.required),
+      empDepartmentId: new FormControl(
+        this.myEmp.empDepartmentId,
+        Validators.required
+      ),
+      empContactNo: new FormControl(
+        this.myEmp.empContactNo,
+        Validators.required
+      ),
+      empEmail: new FormControl(this.myEmp.empEmail, [
+        Validators.required,
+        Validators.email,
+      ]),
+      password: new FormControl(this.myEmp.password, [
+        Validators.required,
+        Validators.pattern(this.passPattern),
+      ]),
+    });
   }
 
   collectData(): void {
@@ -95,10 +126,21 @@ export class RegisterComponent {
     else this.nodeType = 'password';
   }
 
-  // myEmp = new Employee(){
-
-  // }
-
+  myEmp = new Employee(
+    33,
+    'Mahesh',
+    67000,
+    'male',
+    'abc',
+    'JW',
+    5434543434,
+    'abc@gmail.com',
+    'abc'
+  );
+  updateF(): void {
+    this.myEmp = this.updateForm.value;
+    console.log(this.myEmp);
+  }
   // passwordCheck(regForm: FormGroup): boolean {
   //   let pass = regForm.get('password')?.value;
   //   let cPass = regForm.get('confirmPassword')?.value;

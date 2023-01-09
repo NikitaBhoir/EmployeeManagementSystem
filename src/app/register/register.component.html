@@ -1,9 +1,11 @@
+<!-- reactive form -->
 <form
-  [formGroup]="registerForm"
+  [formGroup]="updateForm"
   class="myRegister"
-  (submit)="collectData()"
+  (submit)="updateF()"
   id="form1"
 >
+  <!-- [formGroup]="registerForm"   (submit)="collectData()"-->
   <!-- formGroup linked with form-->
   <h2>Employee Joining Form</h2>
   <hr />
@@ -14,6 +16,7 @@
     <input
       type="text"
       formControlName="empName"
+      [(ngModel)]="myEmp.empName"
       placeholder="Enter your name"
     />
     <div *ngIf="ename?.touched && ename?.invalid" class="text-danger">
@@ -31,6 +34,7 @@
       type="email"
       id="empEmail"
       formControlName="empEmail"
+      [(ngModel)]="myEmp.empEmail"
       placeholder="Enter your email"
     />
     <div *ngIf="eemail?.touched && eemail?.invalid" class="text-danger">
@@ -45,6 +49,7 @@
     <input
       type="number"
       formControlName="empContactNo"
+      [(ngModel)]="myEmp.empContactNo"
       placeholder="Enter your Contact no."
     />
     <div *ngIf="econtact?.touched && econtact?.invalid">
@@ -80,7 +85,10 @@
   <div class="form-control1">
     <label> Department </label>
     <!-- Dropdown options -->
-    <select formControlName="empDepartmentId">
+    <select
+      formControlName="empDepartmentId"
+      [(ngModel)]="myEmp.empDepartmentId"
+    >
       <option value="LD">Learning and Developement</option>
       <option value="JW">Java Web</option>
       <option value="DN">Dot Net</option>
@@ -133,6 +141,7 @@
       </div>
     </div>
   </div>
+
   <div class="form-control1">
     <label> Confirm Password </label>
     <input
@@ -154,21 +163,10 @@
     </div>
 
     <input type="checkbox" (change)="showP($event)" />:Show Password
-    <!-- <tr *ngIf="econfirmpass?.touched && econfirmpass?.invalid">
-      <td></td>
-      <td *ngIf="econfirmpass!.errors!['required']">Confirm password is required</td>
-  </tr>
-  <tr *ngIf="econfirmpass?.touched && registerForm?.invalid">
-      <td></td>
-      <td *ngIf="registerForm!.errors!['passMatch']">Confirm password must be same as password</td> -->
   </div>
   <div>
-    <input
-      type="submit"
-      class="mybutton"
-      value="Register"
-      [disabled]="!registerForm.valid"
-    />
+    <input type="submit" class="mybutton" value="Register" />
+    <!-- [disabled]="!registerForm.valid" -->
     <input type="reset" class="mybutton" value="Reset" />
   </div>
   <div>
