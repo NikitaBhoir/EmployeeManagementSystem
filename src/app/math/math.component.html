@@ -1,0 +1,20 @@
+<!-- template driven approach -->
+<section>
+  <h3>Addition Form</h3>
+  <form #addForm="ngForm" (submit)="AddNum(addForm)">
+    <label>Enter 1st Number:</label>
+    <input type="number" name="num1" ngModel />
+    <label>Enter 2nd Number:</label>
+    <input type="number" name="num2" ngModel /><br />
+    <input type="submit" value="ADD" />
+    <input type="reset" value="RESET" />
+  </form>
+  <div>
+    <h4>Addition is: {{ addResult }}</h4>
+  </div>
+  <div>
+    <h3>Counter logic</h3>
+    <p>Counter Count : {{ counter1 }}</p>
+    <button (click)="getCount()">INC</button>
+  </div>
+</section>

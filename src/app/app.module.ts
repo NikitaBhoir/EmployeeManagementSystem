@@ -19,6 +19,8 @@ import { HomeComponent } from './home/home.component';
 import { ViewNotFoundComponent } from './view-not-found/view-not-found.component';
 import { CompanyDetailsComponent } from './company-details/company-details.component';
 import { EmpDetailsComponent } from './emp-details/emp-details.component';
+import { MathComponent } from './math/math.component';
+import { OperationComponent } from './operation/operation.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { EmpDetailsComponent } from './emp-details/emp-details.component';
     HomeComponent,
     ViewNotFoundComponent,
     CompanyDetailsComponent,
-    EmpDetailsComponent, // this dependancy added automatically when new component is created ,if not then dd manually
+    EmpDetailsComponent,
+    MathComponent,
+    OperationComponent, // this dependancy added automatically when new component is created ,if not then dd manually
   ],
   imports: [
     BrowserModule,
