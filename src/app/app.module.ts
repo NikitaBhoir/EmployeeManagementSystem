@@ -21,6 +21,8 @@ import { CompanyDetailsComponent } from './company-details/company-details.compo
 import { EmpDetailsComponent } from './emp-details/emp-details.component';
 import { MathComponent } from './math/math.component';
 import { OperationComponent } from './operation/operation.component';
+import { HttpClientModule } from '@angular/common/http';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { OperationComponent } from './operation/operation.component';
     CompanyDetailsComponent,
     EmpDetailsComponent,
     MathComponent,
-    OperationComponent, // this dependancy added automatically when new component is created ,if not then dd manually
+    OperationComponent,
+    EmployeeDetailsComponent, // this dependancy added automatically when new component is created ,if not then dd manually
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { OperationComponent } from './operation/operation.component';
     FormsModule,
     OrderModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

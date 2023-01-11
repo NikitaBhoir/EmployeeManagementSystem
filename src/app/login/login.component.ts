@@ -8,7 +8,7 @@ import { Employee } from '../classes/employee';
 })
 export class LoginComponent {
   emp: Employee = {
-    empId: 0,
+    id: 0,
     empName: '',
     empSalary: 0,
     empGender: '',
@@ -17,6 +17,9 @@ export class LoginComponent {
     empDepartmentId: '',
     empEmail: '',
     password: '',
+    getDetail: function (): void {
+      throw new Error('Function not implemented.');
+    },
   };
   collectData(loginForm: any): void {
     console.log(loginForm.value.empEmail);

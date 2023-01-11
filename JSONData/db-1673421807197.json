@@ -1,0 +1,15 @@
+{
+  "employees": [
+    {
+      "id": 43,
+      "empName": "Nikita Bhoir",
+      "empSalary": 3200000,
+      "empGender": "female",
+      "empAddress": "Mumbai",
+      "empContactNo": 3432334321,
+      "empDepartmentId": "LD",
+      "empEmail": "nik@gmail.com",
+      "password": "Nik@1234"
+    }
+  ]
+}

@@ -21,7 +21,7 @@ export class Employee1 {
 }
 
 export class Employee {
-  empId: number;
+  id: number;
   empName: string;
   empSalary: number;
   empGender: string;
@@ -30,6 +30,7 @@ export class Employee {
   empDepartmentId: string;
   empEmail: string;
   password: string;
+  static empCode = 1;
   constructor(
     id = 0,
     name = '',
@@ -44,11 +45,15 @@ export class Employee {
     this.empDepartmentId = did;
     this.empAddress = address;
     this.empGender = gender;
-    this.empId = id;
+    this.id = id;
     this.empName = name;
     this.empSalary = salary;
     this.empContactNo = empContactNo;
     this.empEmail = email;
     this.password = pswd;
+  }
+
+  getDetail(): void {
+    // this.id = 'NS' + Employee.empCode++;
   }
 }

@@ -1,0 +1,31 @@
+<p>employee-details works!</p>
+<section>
+  <table border="2px solid black" class="table table-bordered">
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Salary</th>
+      <th>Department</th>
+      <th>Contact No.</th>
+      <th>Email</th>
+      <th>Address</th>
+    </tr>
+    <tbody>
+      <tr *ngFor="let item of empArr">
+        <td>{{ item.id }}</td>
+        <td>{{ item.empName }}</td>
+        <td>{{ item.empSalary }}</td>
+        <td>{{ item.empDepartmentId }}</td>
+        <td>{{ item.empContactNo }}</td>
+        <td>{{ item.empEmail }}</td>
+        <td>{{ item.empAddress }}</td>
+        <td><button (click)="deleteById(item.id)">Delete</button></td>
+        <td><a [routerLink]="['/registeruser', item.id]">EDIT</a></td>
+      </tr>
+    </tbody>
+    <!-- <tr>
+        <th></th>
+        <td></td>
+      </tr> -->
+  </table>
+</section>
