@@ -1,0 +1,25 @@
+.formCard {
+  max-width: 400px;
+
+  margin: 50px auto;
+  padding: 30px 20px;
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.top-row {
+  padding: 2rem 0rem;
+}
+.mat-form-field {
+  width: 100%;
+}
+.image-container {
+  width: 200px;
+  height: 200px;
+  background-color: #f7f7f7;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}

@@ -1,0 +1,9 @@
+<p>footersection works!</p>
+<ol>
+  <li *ngFor="let prsence of globalArray">{{ prsence }}</li>
+</ol>
+<input type="text" [(ngModel)]="gp" />
+<button (click)="globalArray.push(gp)">PUSH NEW DATA IN ARRAY</button>
+
+<br />
+<b>{{ locFromParent }}</b>

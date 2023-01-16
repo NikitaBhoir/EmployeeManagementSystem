@@ -259,6 +259,7 @@
 <!-- for passing event from parent to child and get data from child use () to pass event and event emmiter to pass data -->
 <article class="flexContainer">
   <div *ngFor="let item of deptArray">
+    <!-- 5 department objects, 5 times child gettting loaded-->
     <app-dept-container
       [department]="item"
       (emitter)="acceptData($event)"
@@ -471,3 +472,7 @@
     </tr>
   </tbody>
 </table>
+
+<section>
+  <router-outlet></router-outlet>
+</section>

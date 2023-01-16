@@ -17,6 +17,9 @@ export class EmployeeCRUDService {
   getEmployeeById(eid: number) {
     return this.httpClient.get(`${this.basePath}/${eid}`);
   }
+  updateEmployee(emp: Employee) {
+    return this.httpClient.put(`${this.basePath}/${emp.id}`, emp); //`${this.basePath}/${eid}`
+  }
   deleteEmployee(eid: number) {
     return this.httpClient.delete(`${this.basePath}/${eid}`);
   }

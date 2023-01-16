@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from '../classes/employee';
 import { EmployeeCRUDService } from '../services/employee-crud.service';
 
@@ -14,11 +14,12 @@ import { EmployeeCRUDService } from '../services/employee-crud.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({});
   updateForm: FormGroup = new FormGroup({});
   employee = new Employee();
   myBorder = 'green 2px solid';
+  routeParameter: string | null = '';
   joinSuccessMessage = '';
   passPattern =
     '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@[-`{-~]).{7,15}$';
@@ -37,7 +38,8 @@ export class RegisterComponent {
   // );
   constructor(
     private empCrud: EmployeeCRUDService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private router: Router
   ) {
     this.registerForm = new FormGroup(
       {
@@ -97,9 +99,13 @@ export class RegisterComponent {
 
   ngOnInit(): void {
     let eid = 0;
-    let empId = this.activeRoute.snapshot.paramMap.get('eid');
-    console.log(empId);
-    if (empId != null) eid = parseInt(empId);
+    // let empId = this.activeRoute.snapshot.paramMap.get('eid');
+    //console.log(empId);
+    //if (empId != null) eid = parseInt(empId);
+
+    this.routeParameter = this.activeRoute.snapshot.paramMap.get('eid');
+    if (this.routeParameter != null) eid = parseInt(this.routeParameter);
+
     this.empCrud.getEmployeeById(eid).subscribe({
       next: (successres) => {
         console.log(successres);
@@ -108,7 +114,16 @@ export class RegisterComponent {
       error: (errorres) => console.log(errorres),
     });
   }
-
+  setValue() {
+    this.updateForm.setValue({
+      id: this.myEmp.id,
+      empName: this.myEmp.empName,
+      empAddress: this.myEmp.empAddress,
+      empSalary: this.myEmp.empSalary,
+      empDepartmentId: this.myEmp.empDepartmentId,
+      empPassword: this.myEmp.password,
+    });
+  }
   collectData(): void {
     console.log('register Form', this.registerForm.value);
     this.employee = this.registerForm.value; // id is not taken from form
@@ -174,9 +189,23 @@ export class RegisterComponent {
   }
 
   updateF(): void {
-    this.myEmp = this.updateForm.value;
-    // later we pass this object to backend to save updated record at
+    // this.myEmp.empName = this.updateForm.get('empName')?.value;
+    // this.myEmp.empSalary = this.updateForm.get('empSalary')?.value;
+    // this.myEmp.empGender = this.updateForm.get('empGender')?.value;
+    // this.myEmp.empAddress = this.updateForm.get('empAddress')?.value;
+    // this.myEmp.empEmail = this.updateForm.get('empEmail')?.value;
+    // this.myEmp.password = this.updateForm.get('password')?.value;
     console.log(this.myEmp);
+    //this.myEmp = this.updateForm.value;
+    // later we pass this object to backend to save updated record at
+    // console.log(this.myEmp);
+  }
+  updateCollectedData() {
+    this.empCrud.updateEmployee(this.myEmp).subscribe({
+      next: (successResponse) => console.log(successResponse),
+      error: (errorResponse) => console.log(errorResponse),
+    });
+    this.router.navigate(['/employeedetails']);
   }
   // passwordCheck(regForm: FormGroup): boolean {
   //   let pass = regForm.get('password')?.value;

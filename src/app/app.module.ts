@@ -23,6 +23,18 @@ import { MathComponent } from './math/math.component';
 import { OperationComponent } from './operation/operation.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
+import { MaterialformComponent } from './materialform/materialform.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { FootersectionComponent } from './footersection/footersection.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +55,9 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
     EmpDetailsComponent,
     MathComponent,
     OperationComponent,
-    EmployeeDetailsComponent, // this dependancy added automatically when new component is created ,if not then dd manually
+    EmployeeDetailsComponent,
+    MaterialformComponent,
+    FootersectionComponent, // this dependancy added automatically when new component is created ,if not then dd manually
   ],
   imports: [
     BrowserModule,
@@ -52,6 +66,15 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
     OrderModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatSlideToggleModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

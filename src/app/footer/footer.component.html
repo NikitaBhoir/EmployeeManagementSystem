@@ -40,4 +40,15 @@
     <hr />
     <p>Created By Nikita Bhoir<br />Store © 2023</p>
   </div>
+
+  <h3>Global Presences</h3>
+  <ol>
+    <li *ngFor="let prsence of globalPresence">{{ prsence }}</li>
+  </ol>
+  Parent changing location: <input type="text" [(ngModel)]="myLocation" />
+  <hr />
+  <app-footersection
+    [globalArray]="globalPresence"
+    [locFromParent]="myLocation"
+  ></app-footersection>
 </footer>

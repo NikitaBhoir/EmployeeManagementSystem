@@ -1,179 +1,389 @@
 <!-- reactive form -->
-<form
-  [formGroup]="registerForm"
-  class="myRegister"
-  (submit)="collectData()"
-  id="form1"
->
-  <!--   [formGroup]="updateForm" (submit)="collectData()"-->
-  <!-- formGroup linked with form-->
-  <h2>Employee Joining Form</h2>
-  <pre>{{ joinSuccessMessage }}</pre>
-  <hr />
-  <br />
-  <div class="form-control1">
-    <label> Employee Name </label>
-    <!-- Input Type Text -->
-    <input
-      type="text"
-      formControlName="empName"
-      placeholder="Enter your name"
-    />
-    <div *ngIf="ename?.touched && ename?.invalid" class="text-danger">
-      <!-- Employee name is required -->
+<section>
+  <div *ngIf="routeParameter == null">
+    <form
+      [formGroup]="registerForm"
+      class="myRegister"
+      (submit)="collectData()"
+      id="form1"
+    >
+      <!--   [formGroup]="updateForm" (submit)="collectData()"-->
+      <!-- formGroup linked with form-->
+      <h2>Employee Joining Form</h2>
+      <pre>{{ joinSuccessMessage }}</pre>
+      <hr />
+      <br />
+      <div class="form-control1">
+        <label> Employee Name </label>
+        <!-- Input Type Text -->
+        <input
+          type="text"
+          formControlName="empName"
+          placeholder="Enter your name"
+        />
+        <div *ngIf="ename?.touched && ename?.invalid" class="text-danger">
+          <!-- Employee name is required -->
 
-      <div *ngIf="ename!.errors!['required']">Employee Name is required</div>
-      <div *ngIf="ename!.errors!['minlength']">Please add min 2 characters</div>
-      <div *ngIf="ename!.errors!['pattern']">Name only contains alphabates</div>
-    </div>
-  </div>
-
-  <div class="form-control1">
-    <label> Email </label>
-    <input
-      type="email"
-      id="empEmail"
-      formControlName="empEmail"
-      placeholder="Enter your email"
-    />
-    <div *ngIf="eemail?.touched && eemail?.invalid" class="text-danger">
-      <div *ngIf="eemail!.errors!['required']">email is required</div>
-      <div *ngIf="eemail!.errors!['email']">Please enter valid email id</div>
-    </div>
-    <!-- <div *ngIf="myForm.control['empName'].error"></div> -->
-  </div>
-
-  <div class="form-control1">
-    <label> Contact No. </label>
-    <input
-      type="number"
-      formControlName="empContactNo"
-      placeholder="Enter your Contact no."
-    />
-    <div *ngIf="econtact?.touched && econtact?.invalid">
-      <div *ngIf="econtact!.errors!['required']">
-        Contact number is required
+          <div *ngIf="ename!.errors!['required']">
+            Employee Name is required
+          </div>
+          <div *ngIf="ename!.errors!['minlength']">
+            Please add min 2 characters
+          </div>
+          <div *ngIf="ename!.errors!['pattern']">
+            Name only contains alphabates
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="form-control1">
-    <label> Address </label>
-    <input
-      type="text"
-      formControlName="empAddress"
-      placeholder="Enter your Address"
-    />
-    <div *ngIf="eaddress?.touched && eaddress?.invalid">
-      <div *ngIf="eaddress!.errors!['required']">Address is required</div>
-    </div>
-  </div>
-  <div class="form-control1">
-    <label> Salary </label>
-    <input
-      type="number"
-      formControlName="empSalary"
-      placeholder="Enter your Salary"
-    />
-    <div *ngIf="esalary?.touched && esalary?.invalid">
-      <div *ngIf="esalary!.errors!['required']">Salary is required</div>
-      <div *ngIf="esalary!.errors!['min']">-ve value not allowed</div>
-    </div>
-  </div>
 
-  <div class="form-control1">
-    <label> Department </label>
-    <!-- Dropdown options -->
-    <select formControlName="empDepartmentId">
-      <option value="LD">Learning and Developement</option>
-      <option value="JW">Java Web</option>
-      <option value="DN">Dot Net</option>
-      <option value="HR">Human Resource</option>
-    </select>
-    <div *ngIf="deptId?.touched && deptId?.invalid">
-      <div *ngIf="deptId!.errors!['required']">Department is required</div>
-    </div>
-  </div>
-
-  <div class="form-control1">
-    <label> Gender </label>
-    <!-- Input Type Radio Button -->
-    <label>
-      <input
-        type="radio"
-        formControlName="empGender"
-        value="male"
-        name="empGender"
-      />Male
-    </label>
-    <label>
-      <input
-        type="radio"
-        formControlName="empGender"
-        value="female"
-        name="empGender"
-      />Female
-    </label>
-  </div>
-  <div class="form-control1">
-    <label> Password </label>
-    <input
-      type="password"
-      formControlName="password"
-      placeholder="Enter your password"
-    />
-    <div *ngIf="epass?.touched && epass?.invalid">
-      <div *ngIf="epass!.errors!['required']">Password is required</div>
-      <div *ngIf="epass!.errors!['pattern']">
-        <!-- Please enter valid password it should be a combination of : -->
-        <b>Password should contain atleast one</b>
-        <ol>
-          <li>small letter</li>
-          <li>capital letter</li>
-          <li>digit</li>
-          <li>Special Symbol</li>
-        </ol>
-        <b>Password should be 7 to 15 characters long</b>
+      <div class="form-control1">
+        <label> Email </label>
+        <input
+          type="email"
+          id="empEmail"
+          formControlName="empEmail"
+          placeholder="Enter your email"
+        />
+        <div *ngIf="eemail?.touched && eemail?.invalid" class="text-danger">
+          <div *ngIf="eemail!.errors!['required']">email is required</div>
+          <div *ngIf="eemail!.errors!['email']">
+            Please enter valid email id
+          </div>
+        </div>
+        <!-- <div *ngIf="myForm.control['empName'].error"></div> -->
       </div>
-    </div>
-  </div>
 
-  <div class="form-control1">
-    <label> Confirm Password </label>
-    <input
-      [type]="nodeType"
-      formControlName="confirmPassword"
-      placeholder="Confirm your Password"
-      [ngStyle]="{
-        border: registerForm.hasError('passMatch') ? 'red 2px solid' : ''
-      }"
-    />
-    <div *ngIf="registerForm?.invalid && econfirmpass?.touched">
-      <div *ngIf="registerForm!.hasError('passMatch')">
-        Confirm password must be same as password
+      <div class="form-control1">
+        <label> Contact No. </label>
+        <input
+          type="number"
+          formControlName="empContactNo"
+          placeholder="Enter your Contact no."
+        />
+        <div *ngIf="econtact?.touched && econtact?.invalid">
+          <div *ngIf="econtact!.errors!['required']">
+            Contact number is required
+          </div>
+        </div>
       </div>
-    </div>
-    <div *ngIf="econfirmpass?.invalid && econfirmpass?.touched">
-      <!-- <div *ngIf="econfirmpass!.errors!['required']">password is required</div> -->
-      <div *ngIf="econfirmpass!.errors!['required']">password is required</div>
-    </div>
+      <div class="form-control1">
+        <label> Address </label>
+        <input
+          type="text"
+          formControlName="empAddress"
+          placeholder="Enter your Address"
+        />
+        <div *ngIf="eaddress?.touched && eaddress?.invalid">
+          <div *ngIf="eaddress!.errors!['required']">Address is required</div>
+        </div>
+      </div>
+      <div class="form-control1">
+        <label> Salary </label>
+        <input
+          type="number"
+          formControlName="empSalary"
+          placeholder="Enter your Salary"
+        />
+        <div *ngIf="esalary?.touched && esalary?.invalid">
+          <div *ngIf="esalary!.errors!['required']">Salary is required</div>
+          <div *ngIf="esalary!.errors!['min']">-ve value not allowed</div>
+        </div>
+      </div>
 
-    <input type="checkbox" (change)="showP($event)" />:Show Password
-  </div>
-  <div>
-    <input type="submit" class="mybutton" value="Register" />
-    <!-- [disabled]="!registerForm.valid" -->
-    <input type="reset" class="mybutton" value="Reset" />
-  </div>
-  <div>
-    <h5>
-      Existing User??<i><a routerLink="/login">Login here</a></i>
-      <!-- add / in link to take base url as default and append registeruser into link .
-      if you doesn't use / then it will append it to existing url  -->
-    </h5>
-  </div>
-</form>
+      <div class="form-control1">
+        <label> Department </label>
+        <!-- Dropdown options -->
+        <select formControlName="empDepartmentId">
+          <option value="LD">Learning and Developement</option>
+          <option value="JW">Java Web</option>
+          <option value="DN">Dot Net</option>
+          <option value="HR">Human Resource</option>
+        </select>
+        <div *ngIf="deptId?.touched && deptId?.invalid">
+          <div *ngIf="deptId!.errors!['required']">Department is required</div>
+        </div>
+      </div>
 
-<form
+      <div class="form-control1">
+        <label> Gender </label>
+        <!-- Input Type Radio Button -->
+        <label>
+          <input
+            type="radio"
+            formControlName="empGender"
+            value="male"
+            name="empGender"
+          />Male
+        </label>
+        <label>
+          <input
+            type="radio"
+            formControlName="empGender"
+            value="female"
+            name="empGender"
+          />Female
+        </label>
+      </div>
+      <div class="form-control1">
+        <label> Password </label>
+        <input
+          type="password"
+          formControlName="password"
+          placeholder="Enter your password"
+        />
+        <div *ngIf="epass?.touched && epass?.invalid">
+          <div *ngIf="epass!.errors!['required']">Password is required</div>
+          <div *ngIf="epass!.errors!['pattern']">
+            <!-- Please enter valid password it should be a combination of : -->
+            <b>Password should contain atleast one</b>
+            <ol>
+              <li>small letter</li>
+              <li>capital letter</li>
+              <li>digit</li>
+              <li>Special Symbol</li>
+            </ol>
+            <b>Password should be 7 to 15 characters long</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-control1">
+        <label> Confirm Password </label>
+        <input
+          [type]="nodeType"
+          formControlName="confirmPassword"
+          placeholder="Confirm your Password"
+          [ngStyle]="{
+            border: registerForm.hasError('passMatch') ? 'red 2px solid' : ''
+          }"
+        />
+        <div *ngIf="registerForm?.invalid && econfirmpass?.touched">
+          <div *ngIf="registerForm!.hasError('passMatch')">
+            Confirm password must be same as password
+          </div>
+        </div>
+        <div *ngIf="econfirmpass?.invalid && econfirmpass?.touched">
+          <!-- <div *ngIf="econfirmpass!.errors!['required']">password is required</div> -->
+          <div *ngIf="econfirmpass!.errors!['required']">
+            password is required
+          </div>
+        </div>
+
+        <input type="checkbox" (change)="showP($event)" />:Show Password
+      </div>
+      <div>
+        <input
+          type="submit"
+          class="mybutton"
+          [disabled]="!registerForm.valid"
+          value="Register"
+        />
+        <!-- [disabled]="!registerForm.valid" -->
+        <input type="reset" class="mybutton" value="Reset" />
+      </div>
+      <div>
+        <h5>
+          Existing User??<i><a routerLink="/login">Login here</a></i>
+          <!-- add / in link to take base url as default and append registeruser into link .
+        if you doesn't use / then it will append it to existing url  -->
+        </h5>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="routeParameter != null">
+    <!-- template driven form -->
+    <form
+      #UpdateForm="ngForm"
+      class="myRegister"
+      (submit)="updateCollectedData()"
+      id="form1"
+    >
+      <h2>Employee Joining Form</h2>
+      <pre>{{ joinSuccessMessage }}</pre>
+      <hr />
+      <br />
+      <div class="form-control1">
+        <label> Employee Id </label>
+        <input
+          type="text"
+          name="id"
+          [(ngModel)]="myEmp.id"
+          placeholder="Id"
+          readonly
+        />
+      </div>
+      <div class="form-control1">
+        <label> Employee Name </label>
+        <input
+          type="text"
+          name="empName"
+          [(ngModel)]="myEmp.empName"
+          placeholder="Enter your name"
+        />
+        <div *ngIf="ename?.touched && ename?.invalid" class="text-danger">
+          <div *ngIf="ename!.errors!['required']">
+            Employee Name is required
+          </div>
+          <div *ngIf="ename!.errors!['minlength']">
+            Please add min 2 characters
+          </div>
+          <div *ngIf="ename!.errors!['pattern']">
+            Name only contains alphabates
+          </div>
+        </div>
+      </div>
+
+      <div class="form-control1">
+        <label> Email </label>
+        <input
+          type="email"
+          id="empEmail"
+          name="empEmail"
+          [(ngModel)]="myEmp.empEmail"
+          placeholder="Enter your email"
+          readonly
+        />
+        <div *ngIf="eemail?.touched && eemail?.invalid" class="text-danger">
+          <div *ngIf="eemail!.errors!['required']">email is required</div>
+          <div *ngIf="eemail!.errors!['email']">
+            Please enter valid email id
+          </div>
+        </div>
+      </div>
+
+      <div class="form-control1">
+        <label> Contact No. </label>
+        <input
+          type="number"
+          name="empContactNo"
+          [(ngModel)]="myEmp.empContactNo"
+          placeholder="Enter your Contact no."
+        />
+        <div *ngIf="econtact?.touched && econtact?.invalid">
+          <div *ngIf="econtact!.errors!['required']">
+            Contact number is required
+          </div>
+        </div>
+      </div>
+      <div class="form-control1">
+        <label> Address </label>
+        <input
+          type="text"
+          name="empAddress"
+          [(ngModel)]="myEmp.empAddress"
+          placeholder="Enter your Address"
+        />
+        <div *ngIf="eaddress?.touched && eaddress?.invalid">
+          <div *ngIf="eaddress!.errors!['required']">Address is required</div>
+        </div>
+      </div>
+      <div class="form-control1">
+        <label> Salary </label>
+        <input
+          type="number"
+          name="empSalary"
+          [(ngModel)]="myEmp.empSalary"
+          placeholder="Enter your Salary"
+        />
+        <div *ngIf="esalary?.touched && esalary?.invalid">
+          <div *ngIf="esalary!.errors!['required']">Salary is required</div>
+          <div *ngIf="esalary!.errors!['min']">-ve value not allowed</div>
+        </div>
+      </div>
+
+      <div class="form-control1">
+        <label> Department </label>
+        <select name="empDepartmentId" [(ngModel)]="myEmp.empDepartmentId">
+          <option value="LD">Learning and Developement</option>
+          <option value="JW">Java Web</option>
+          <option value="DN">Dot Net</option>
+          <option value="HR">Human Resource</option>
+        </select>
+        <div *ngIf="deptId?.touched && deptId?.invalid">
+          <div *ngIf="deptId!.errors!['required']">Department is required</div>
+        </div>
+      </div>
+
+      <div class="form-control1">
+        <label> Gender </label>
+        <label>
+          <input
+            type="radio"
+            name="empGender"
+            [(ngModel)]="myEmp.empGender"
+            value="male"
+          />Male
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="empGender"
+            [(ngModel)]="myEmp.empGender"
+            value="female"
+          />Female
+        </label>
+      </div>
+      <div class="form-control1">
+        <label> Password </label>
+        <input
+          [type]="nodeType"
+          name="password"
+          [(ngModel)]="myEmp.password"
+          placeholder="Enter your password"
+        />
+        <div *ngIf="epass?.touched && epass?.invalid">
+          <div *ngIf="epass!.errors!['required']">Password is required</div>
+          <div *ngIf="epass!.errors!['pattern']">
+            <b>Password should contain atleast one</b>
+            <ol>
+              <li>small letter</li>
+              <li>capital letter</li>
+              <li>digit</li>
+              <li>Special Symbol</li>
+            </ol>
+            <b>Password should be 7 to 15 characters long</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-control1">
+        <label> Confirm Password </label>
+        <input
+          [type]="nodeType"
+          [disabled]="true"
+          name="confirmPassword"
+          placeholder="Confirm your Password"
+          [ngStyle]="{
+            border: registerForm.hasError('passMatch') ? 'red 2px solid' : ''
+          }"
+        />
+        <div *ngIf="registerForm?.invalid && econfirmpass?.touched">
+          <div *ngIf="registerForm!.hasError('passMatch')">
+            Confirm password must be same as password
+          </div>
+        </div>
+        <div *ngIf="econfirmpass?.invalid && econfirmpass?.touched">
+          <div *ngIf="econfirmpass!.errors!['required']">
+            password is required
+          </div>
+        </div>
+
+        <input type="checkbox" (change)="showP($event)" />:Show Password
+      </div>
+      <div>
+        <input type="submit" class="mybutton" value="Update" />
+        <input type="reset" class="mybutton" value="Reset" />
+      </div>
+      <div>
+        <h5>
+          Existing User??<i><a routerLink="/login">Login here</a></i>
+        </h5>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- <form
   [formGroup]="updateForm"
   class="myRegister"
   (submit)="updateF()"
@@ -184,10 +394,21 @@
   <hr />
   <br />
   <div class="form-control1">
+    <label> Employee Id </label>
+    <input
+      type="text"
+      formControlName="id"
+      [value]="myEmp.id"
+      placeholder="Id"
+      readonly
+    />
+  </div>
+  <div class="form-control1">
     <label> Employee Name </label>
     <input
       type="text"
       formControlName="empName"
+      [value]="myEmp.empName"
       placeholder="Enter your name"
     />
     <div *ngIf="ename?.touched && ename?.invalid" class="text-danger">
@@ -203,7 +424,9 @@
       type="email"
       id="empEmail"
       formControlName="empEmail"
+      [value]="myEmp.empEmail"
       placeholder="Enter your email"
+      readonly
     />
     <div *ngIf="eemail?.touched && eemail?.invalid" class="text-danger">
       <div *ngIf="eemail!.errors!['required']">email is required</div>
@@ -216,6 +439,7 @@
     <input
       type="number"
       formControlName="empContactNo"
+      [value]="myEmp.empContactNo"
       placeholder="Enter your Contact no."
     />
     <div *ngIf="econtact?.touched && econtact?.invalid">
@@ -229,6 +453,7 @@
     <input
       type="text"
       formControlName="empAddress"
+      [value]="myEmp.empAddress"
       placeholder="Enter your Address"
     />
     <div *ngIf="eaddress?.touched && eaddress?.invalid">
@@ -240,6 +465,7 @@
     <input
       type="number"
       formControlName="empSalary"
+      [value]="myEmp.empSalary"
       placeholder="Enter your Salary"
     />
     <div *ngIf="esalary?.touched && esalary?.invalid">
@@ -250,7 +476,7 @@
 
   <div class="form-control1">
     <label> Department </label>
-    <select formControlName="empDepartmentId">
+    <select formControlName="empDepartmentId" [value]="myEmp.empDepartmentId">
       <option value="LD">Learning and Developement</option>
       <option value="JW">Java Web</option>
       <option value="DN">Dot Net</option>
@@ -264,27 +490,18 @@
   <div class="form-control1">
     <label> Gender </label>
     <label>
-      <input
-        type="radio"
-        formControlName="empGender"
-        value="male"
-        name="empGender"
-      />Male
+      <input type="radio" formControlName="empGender" value="male" />Male
     </label>
     <label>
-      <input
-        type="radio"
-        formControlName="empGender"
-        value="female"
-        name="empGender"
-      />Female
+      <input type="radio" formControlName="empGender" value="female" />Female
     </label>
   </div>
   <div class="form-control1">
     <label> Password </label>
     <input
-      type="password"
+      [type]="nodeType"
       formControlName="password"
+      [value]="myEmp.password"
       placeholder="Enter your password"
     />
     <div *ngIf="epass?.touched && epass?.invalid">
@@ -306,6 +523,7 @@
     <label> Confirm Password </label>
     <input
       [type]="nodeType"
+      [disabled]="true"
       formControlName="confirmPassword"
       placeholder="Confirm your Password"
       [ngStyle]="{
@@ -332,7 +550,7 @@
       Existing User??<i><a routerLink="/login">Login here</a></i>
     </h5>
   </div>
-</form>
+</form> -->
 <!-- reactive form -->
 <!-- <form
   [formGroup]="updateForm"
